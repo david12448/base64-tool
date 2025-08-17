@@ -4,69 +4,66 @@
 <meta charset="UTF-8">
 <title>Base64 변환기</title>
 <style>
-    body {
-        font-family: 'Malgun Gothic', '맑은 고딕', Arial, sans-serif;
-        padding: 20px;
-        /* max-width를 100%로 설정하여 부모 요소의 너비에 맞춤 */
-        max-width: 100%;
-        margin: auto;
-        /* 모바일 환경에서 좌우 스크롤바가 생기지 않도록 방지 */
-        overflow-x: hidden; 
-    }
-    textarea, input {
-        /* 너비를 95%로 설정하여 좌우 여백을 만듦 */
-        width: 95%;
-        padding: 10px;
-        margin-top: 5px;
-        margin-bottom: 15px;
-        font-size: 16px; /* 글자 크기 조금 키움 */
-        box-sizing: border-box;
-        /* textarea의 높이 지정 */
-        height: 100px; 
-    }
-    textarea#original {
-        resize: vertical; /* 높이 조절만 가능하게 함 */
-    }
+/* 전체 컨테이너를 반응형으로 설정 */
+.converter-container {
+    font-family: 'Malgun Gothic', '맑은 고딕', Arial, sans-serif;
+    padding: 20px 0;
+    max-width: 100%;
+    margin: 0;
+}
+textarea, input {
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    box-sizing: border-box;
+    height: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+textarea#original {
+    resize: vertical;
+}
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+button:hover {
+    background-color: #e0e0e0;
+}
+/* 모바일 환경 최적화 */
+@media (max-width: 600px) {
     button {
-        padding: 10px 20px;
-        font-size: 16px;
-        margin-right: 10px;
-        cursor: pointer;
-        background-color: #f0f0f0;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        transition: background-color 0.2s;
+        display: block;
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
     }
-    button:hover {
-        background-color: #e0e0e0;
-    }
-    /* 모바일 환경 최적화 */
-    @media (max-width: 600px) {
-        body {
-            padding: 10px;
-        }
-        button {
-            display: block;
-            width: 95%;
-            margin-bottom: 10px;
-        }
-    }
+}
 </style>
 </head>
 <body>
 
-<h2>Base64 변환기</h2>
-
-<label>원본 텍스트(URL):</label>
-<textarea id="original" rows="3" placeholder="https://example.com"></textarea>
-
-<label>Base64 결과:</label>
-<textarea id="encoded" rows="3" placeholder="암호화된 결과가 여기에 표시됩니다"></textarea>
-
-<div>
-    <button onclick="encodeText()">Base64 인코딩</button>
-    <button onclick="decodeText()">Base64 디코딩</button>
-    <button onclick="clearAll()">초기화</button>
+<div class="converter-container">
+    <h2>Base64 변환기</h2>
+    <label>원본 텍스트(URL):</label>
+    <textarea id="original" rows="3" placeholder="https://example.com"></textarea>
+    <label>Base64 결과:</label>
+    <textarea id="encoded" rows="3" placeholder="암호화된 결과가 여기에 표시됩니다"></textarea>
+    <div>
+        <button onclick="encodeText()">Base64 인코딩</button>
+        <button onclick="decodeText()">Base64 디코딩</button>
+        <button onclick="clearAll()">초기화</button>
+    </div>
 </div>
 
 <script>
