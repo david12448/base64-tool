@@ -13,3 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+// 마우스 오버 시 주소 숨기기 (브라우저 상태창 차단)
+document.addEventListener("mouseover", (e) => {
+    if (e.target.tagName === "A" || e.target.closest("a")) {
+        window.status = "";
+    }
+});
