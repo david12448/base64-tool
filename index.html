@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Base64 변환기</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        max-width: 500px;
+        margin: auto;
+    }
+    textarea, input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+    button {
+        padding: 8px 16px;
+        font-size: 14px;
+        margin-right: 8px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<h2>Base64 변환기</h2>
+
+<label>원본 텍스트(URL):</label>
+<textarea id="original" rows="3" placeholder="https://example.com"></textarea>
+
+<label>Base64 결과:</label>
+<textarea id="encoded" rows="3" placeholder="암호화된 결과가 여기에 표시됩니다"></textarea>
+
+<div>
+    <button onclick="encodeText()">Base64 인코딩</button>
+    <button onclick="decodeText()">Base64 디코딩</button>
+    <button onclick="clearAll()">초기화</button>
+</div>
+
+<script>
+function encodeText() {
+    const text = document.getElementById('original').value.trim();
+    if (!text) {
+        alert('변환할 텍스트를 입력하세요.');
+        return;
+    }
+    document.getElementById('encoded').value = btoa(text);
+}
+
+function decodeText() {
+    const encoded = document.getElementById('encoded').value.trim();
+    if (!encoded) {
+        alert('디코딩할 Base64 값을 입력하세요.');
+        return;
+    }
+    try {
+        document.getElementById('original').value = atob(encoded);
+    } catch (e) {
+        alert('유효한 Base64 값이 아닙니다.');
+    }
+}
+
+function clearAll() {
+    document.getElementById('original').value = '';
+    document.getElementById('encoded').value = '';
+}
+</script>
+
+</body>
+</html>
